@@ -1,6 +1,7 @@
-#ifndef _Matrix_hpp_
-#define _Matrix_hpp_
+#ifndef _heterovector_hpp_
+#define _heterovector_hpp_
 
+#include <cassert>
 #include <iostream>
 #include <variant>
 #include <vector>
@@ -52,9 +53,13 @@ int heterovector::size() { return vec.size(); }
 
 template <typename T>
 T heterovector::get(int index) {
-    return std::get<T>(vec[index]);
+    try {
+        return std::get<T>(vec[index]);
+    } catch (const std::exception &e) {
+        assert(("The given data type is not supported.", false));
+    }
 }
 
 std::variant<int, float, double> &heterovector::operator[](int index) { return vec[index]; }
 
-#endif /* _Matrix_hpp_ */
+#endif /* _heterovector_hpp_ */
