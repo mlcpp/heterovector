@@ -56,7 +56,7 @@ T heterovector::get(int index) {
     try {
         return std::get<T>(vec[index]);
     } catch (const std::exception &e) {
-        assert(("The given data type is not supported.", false));
+        assert(("The given data type does not match the stored data type.", false));
     }
 }
 
